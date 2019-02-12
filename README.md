@@ -12,7 +12,7 @@ To install:
     ```
     pip install -r requirements.txt
     ```
-4. Run the application with these command:
+4. Run the application with these commands:
     ```
     export FLASK_APP=ingredients-label
     flask run
