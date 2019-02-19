@@ -1,17 +1,20 @@
 import numpy as np
-
 from PIL import Image
-
 from pytesseract import image_to_string
 
 
 class Read():
-    def __init__(self, filename):
+    def __init__(self, filename, foodName):
         self.fileName = filename
+        self.foodName = foodName
+
+    def get_food(self):
+        #foodName = input("Enter food name: ")
+        self.foodName
 
     def get_fileName(self):
-        fileName = input("Enter file location: ")
-        self.fileName = fileName
+        #fileName = input("Enter file location: ")
+        self.fileName
 
     def ocr(self):
         # convert to grayspace
@@ -39,3 +42,18 @@ class Read():
             text = image_to_string(img)
 
         return text
+
+class Store_Data(Read):
+    def __init__(self, fileName, foodName):
+        super().__init__(fileName, foodName)
+        print(foodName)
+
+    def dictionary_add(self):
+        # split string into a list
+        raw_text = Read.ocr(self)
+        sep = raw_text.split(',')
+
+        # create ingredients_dict variable
+        ingredients_dict = dict.fromkeys(sep, self.foodName)
+
+        return ingredients_dict
