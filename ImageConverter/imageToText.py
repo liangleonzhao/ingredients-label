@@ -1,62 +1,41 @@
-#!/usr/bin/python
-# import cv2
 import numpy as np
 
 from PIL import Image
 
 from pytesseract import image_to_string
 
-img = Image.open('/Users/phoebeshieh/PycharmProjects/cpsc462/image1.jpg')
 
-# convert to grayspace
-img = img.convert('L')
+class Read():
+    def __init__(self, filename):
+        self.fileName = filename
 
-# rotate it
-# img = img.rotate(90)
-# save = img.save('saveimg.jpg')
+    def get_fileName(self):
+        fileName = input("Enter file location: ")
+        self.fileName = fileName
 
-width = 1224
-height = 1632
+    def ocr(self):
+        # convert to grayspace
+        img = Image.open(self.fileName)
+        img = img.convert('L')
+        text = image_to_string(img)
+        if (text.find('INGREDIENTS') != -1):
+            isFound = 1
+            print("Found")
+        else:
+            isFound = 0
+            print("Not found")
 
-# resize image for best result
-# img = img.resize((width,height), Image.ANTIALIAS)
-# img = img.convert('L')
+        while (text.find("INGREDIENTS") == -1 or text == ""):
+            print("inside while loop")
 
-text = image_to_string(img)
-# print(text)
+            # convert to grayspace
+            img = img.convert('L')
+
+            # rotate it
+            img = img.rotate(90)
+            save = img.save('saveimg.jpg')
 
 
-if (text.find('INGREDIENTS') != -1):
-    isFound = 1
-    print("Found")
-else:
-    isFound = 0
-    print("Not found")
+            text = image_to_string(img)
 
-while (text.find("INGREDIENTS") == -1 or text == ""):
-    print("inside while loop")
-    # img = Image.open('/Users/henry/Downloads/image1.jpeg')
-
-    # convert to grayspace
-    img = img.convert('L')
-
-    # rotate it
-    # img = img.rotate(270)
-    img = img.rotate(90)
-    save = img.save('saveimg.jpg')
-
-    width = 1224
-    height = 1632
-
-    # resize image for best result
-    # img = img.resize((width,height), Image.ANTIALIAS)
-    # img = img.convert('L')
-
-    text = image_to_string(img)
-
-    if (text.find('INGREDIENTS') != -1):
-        print(text)
-        break
-
-print(text)
-
+        return text
