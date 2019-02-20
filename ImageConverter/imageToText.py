@@ -56,4 +56,7 @@ class Store_Data(Read):
         # create ingredients_dict variable
         ingredients_dict = dict.fromkeys(sep, self.foodName)
 
+        # remove '\n' in ingredients_dict
+        ingredients_dict = {key.strip(): item.strip() for key, item in ingredients_dict.items()}
+
         return ingredients_dict
