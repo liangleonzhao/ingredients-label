@@ -65,7 +65,7 @@
         </div>
         <div class="col-lg-8 mx-auto">
           <p class="text-faded mb-5">Start Bootstrap can help you build better websites using the Bootstrap CSS framework! Just download your template and start going, no strings attached!</p>
-          <form action = "http://localhost:5000/label/analyze"
+	  <form action = "{{ url_for('label.ai_analyze') }}"
 		  method= "POST" enctype = "multipart/form-data">
 		  <input type = "file" name = "file" />
 		  <input type = "submit"/>
