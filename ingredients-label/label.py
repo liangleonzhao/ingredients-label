@@ -69,9 +69,5 @@ def upload_file():
                 dictlist = dictlist.strip()
                 words = dictlist.split(",")
 
-
-                for word in words:
-                    print word
-
             return text
     return "no file"
